@@ -8,7 +8,7 @@ const ContactForm = () => {
 
 
 	return (
-		<div className="w-full lg:w-1/2">
+		<div className="w-full lg:w-1/2 mx-auto">
 			<Notify/>
 			<div className="leading-loose">
 				<form ref={formRef} 

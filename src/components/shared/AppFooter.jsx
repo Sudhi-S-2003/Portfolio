@@ -1,5 +1,5 @@
 import {
-	FiGithub,
+	FiGithub, FiLinkedin
 } from 'react-icons/fi';
 import AppFooterCopyright from './AppFooterCopyright';
 
@@ -9,7 +9,11 @@ const socialLinks = [
 		id: 1,
 		icon: <FiGithub />,
 		url: 'https://github.com/Sudhi-S-2003',
-	},
+	},{
+		id: 2,
+		icon: <FiLinkedin />,
+		url: 'https://www.linkedin.com/',
+	}
 	
 ];
 

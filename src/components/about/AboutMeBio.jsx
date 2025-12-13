@@ -42,10 +42,19 @@ const AboutMeBio = () => {
 			<div className="w-full sm:w-3/4 text-left">
 				<h2
 					id="about-me-title"
-					className="sr-only"
+					className="
+		mb-6
+		text-2xl
+		sm:text-3xl
+		font-semibold
+		tracking-tight
+		text-gray-900
+		dark:text-gray-100
+	"
 				>
 					About Me
 				</h2>
+
 
 				{aboutMe.length === 0 ? (
 					<p className="text-gray-500 dark:text-gray-400 text-lg">

@@ -1,38 +1,21 @@
 import AboutMeBio from '../components/about/AboutMeBio';
-// import AboutCounter from '../components/about/AboutCounter';
-// import AboutClients from '../components/about/AboutClients';
+import Skills from '../components/sections/Skills';
 import { AboutMeProvider } from '../context/AboutMeContext';
-import { motion } from 'framer-motion';
+import FadeUp from '../components/animations/FadeUp';
 
 const About = () => {
 	return (
 		<AboutMeProvider>
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1, delay: 1 }}
-				exit={{ opacity: 0 }}
-				className="container mx-auto"
-			>
-				<AboutMeBio />
-			</motion.div>
-
-			{/** Counter without paddings */}
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1, delay: 1 }}
-				exit={{ opacity: 0 }}
-			>
-				{/* <AboutCounter /> */}
-			</motion.div>
-
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1, delay: 1 }}
-				exit={{ opacity: 0 }}
-				className="container mx-auto"
-			>
-				{/* <AboutClients /> */}
-			</motion.div>
+			<div className="min-h-screen bg-white dark:bg-gray-900">
+				<div className="pt-24">
+					<FadeUp>
+						<AboutMeBio />
+					</FadeUp>
+				</div>
+				<div className="bg-gray-50 dark:bg-gray-800">
+					<Skills />
+				</div>
+			</div>
 		</AboutMeProvider>
 	);
 };

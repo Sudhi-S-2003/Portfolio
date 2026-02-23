@@ -1,10 +1,14 @@
 export const aboutMeData = [
 	{
 		id: 1,
-		bio: `Hello! I'm Sudhi, a passionate MERN stack developer with a solid foundation in full-stack web development. I hold a BSc in Computer Science from Kerala University, where my interest in development truly began to take shape. During my college years, I undertook an ERP project that allowed me to dive deep into various aspects of software development, including project management, HR management, and customer support. I self-learned Django through YouTube and Google, which fueled my passion for IT and development. This led me to pursue further studies in the MERN stack at Avodha, where I honed my skills in creating APIs, developing e-commerce solutions, and more.`,
+		bio: `I'm a Full-Stack Engineer specializing in scalable backend systems and high-performance frontend architectures. I design and build production-grade applications using Node.js, TypeScript, React, MongoDB, and cloud-native technologies — focusing on clean architecture, security, and performance.`,
 	},
 	{
 		id: 2,
-		bio: `I am proficient in a variety of technologies, including MongoDB, HTML, CSS, JavaScript, Node.js, React, Tailwind CSS, Bootstrap, and Django. I thrive on problem-solving and coding, always eager to tackle new challenges and find innovative solutions. My approach is driven by a blend of analytical thinking and creativity, ensuring that each project I work on is both functional and visually appealing. When I'm not coding, I enjoy playing football, which helps me stay physically fit, and playing games, which keeps my mind sharp and entertained.`,
+		bio: `My expertise includes microservices, authentication systems (JWT, OAuth, OTP), real-time systems, caching strategies, Redis optimization, advanced MongoDB aggregations, and cloud deployments. I don't just build features — I engineer systems that scale. From designing API rate-limiting strategies to implementing secure OTP flows and distributed architectures, I focus on writing maintainable, future-proof code.`,
+	},
+	{
+		id: 3,
+		bio: `Currently contributing to India's revolutionary ONDC (Open Network for Digital Commerce) initiative at Oxium Technologies, where I've built seller onboarding modules enabling 500+ merchants and implemented buyer-side features with 99.5% uptime. I'm continuously exploring distributed systems, DevOps automation, and performance engineering to stay at the forefront of modern web development.`,
 	},
 ];

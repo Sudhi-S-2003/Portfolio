@@ -237,7 +237,6 @@ const ServiceChat = () => {
 		apiSecret,
 		externalEmail,
 		externalName,
-		frontendBase,
 		initialMessage,
 		sessionId,
 		subject,

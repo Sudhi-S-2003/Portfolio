@@ -1,10 +1,11 @@
 import Button from '../reusable/Button';
 import FormInput from '../reusable/FormInput';
-import axios from 'axios'
 import  { useRef } from 'react'; 
+import { useNavigate } from 'react-router-dom';
 import { notify, Notify } from '../message/notify.jsx';
 const ContactForm = () => {
 	const formRef = useRef(null); 
+	const navigate = useNavigate();
 
 
 	return (
@@ -17,23 +18,18 @@ const ContactForm = () => {
 						// const formData = new FormData(e.target);
 						const formData = new FormData(formRef.current);
 						const formObjData = Object.fromEntries(formData);
-					
-						
 
-
-						axios.post("https://getform.io/f/brologoa", formObjData,
-							{ headers: {'Accept': 'application/json'}})
-							.then(response => {console.log(response);
-								notify('Message sent successfully!','success');
-								formRef.current.reset();
-								
-							}
-						)
-							.catch(error =>{
-								notify('Failed to send message', 'error');
-								console.log(error)
-							
-							} )
+						notify('Opening chat...','success');
+						const chatParams = new URLSearchParams({
+							service: 'contact',
+							subject: formObjData.subject || 'New contact request',
+							name: formObjData.name || 'Guest',
+							email: formObjData.email || '',
+							message: formObjData.message || '',
+							autocreate: '1',
+						});
+						navigate(`/service/chat?${chatParams.toString()}`);
+						formRef.current.reset();
 					}}
 					className="max-w-xl m-4 p-6 sm:p-10 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-xl text-left"
 				>

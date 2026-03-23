@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { FiMenu, FiMoon, FiSun, FiX } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 import useThemeSwitcher from '../../hooks/useThemeSwitcher';
-import HireMeModal from '../HireMeModal';
 import { motion, AnimatePresence } from 'framer-motion';
+import useHireMeChat from '../../hooks/useHireMeChat.jsx';
 
 const links = [
     {
@@ -25,10 +25,10 @@ const links = [
 
 const AppHeader = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const [showModal, setShowModal] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeTheme, setTheme] = useThemeSwitcher();
     const location = useLocation();
+    const { openHireMeChat } = useHireMeChat();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,10 +40,6 @@ const AppHeader = () => {
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
-    };
-
-    const showHireMeModal = () => {
-        setShowModal(!showModal);
     };
 
     const isActive = (path) => location.pathname === path;
@@ -119,31 +115,32 @@ const AppHeader = () => {
                         {/* Right side buttons */}
                         <div className="flex items-center space-x-3">
                             {/* Hire Me Button - Desktop */}
-                            <motion.button
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={showHireMeModal}
-                                className="hidden md:flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-sm font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 relative overflow-hidden group"
-                                aria-label="Hire Me Button"
-                            >
-                                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                                <span className="relative z-10 flex items-center gap-2">
-                                    <span>Hire Me</span>
-                                    <svg
-                                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                        />
-                                    </svg>
-                                </span>
-                            </motion.button>
+                            <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                                <button
+                                    type="button"
+                                    onClick={openHireMeChat}
+                                    className="hidden md:flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-sm font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 relative overflow-hidden group"
+                                    aria-label="Hire Me Button"
+                                >
+                                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        <span>Hire Me</span>
+                                        <svg
+                                            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                            />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </motion.div>
 
                             {/* Theme Switcher */}
                             <motion.button
@@ -229,36 +226,29 @@ const AppHeader = () => {
                                             </motion.div>
                                         );
                                     })}
-                                    <motion.button
+                                    <motion.div
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.3 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => {
-                                            showHireMeModal();
-                                            setShowMenu(false);
-                                        }}
-                                        className="w-full mt-4 px-6 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-base font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
-                                        aria-label="Hire Me Button"
                                     >
-                                        Hire Me
-                                    </motion.button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setShowMenu(false);
+                                                openHireMeChat();
+                                            }}
+                                            className="block w-full mt-4 px-6 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-base font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center"
+                                            aria-label="Hire Me Button"
+                                        >
+                                            Hire Me
+                                        </button>
+                                    </motion.div>
                                 </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
             </motion.nav>
-
-            {/* Hire me modal - Now outside the nav tag! */}
-            <AnimatePresence>
-                {showModal && (
-                    <HireMeModal
-                        onClose={showHireMeModal}
-                        onRequest={showHireMeModal}
-                    />
-                )}
-            </AnimatePresence>
         </>
     );
 };

@@ -5,8 +5,11 @@ import { ProjectsProvider } from '../context/ProjectsContext';
 import Skills from '../components/sections/Skills';
 import FadeUp from '../components/animations/FadeUp';
 import { motion } from 'framer-motion';
+import useHireMeChat from '../hooks/useHireMeChat.jsx';
 
 const Home = () => {
+	const { openHireMeChat } = useHireMeChat();
+
 	return (
 		<div className="min-h-screen">
 			<AppBanner />
@@ -21,7 +24,7 @@ const Home = () => {
 				</ProjectsProvider>
 
 				<FadeUp>
-					<div className="pb-20 flex justify-center">
+					<div className="pb-20 flex flex-wrap justify-center gap-4">
 						<Link to="/projects">
 							<motion.button
 								whileHover={{ scale: 1.05, y: -2 }}
@@ -45,6 +48,16 @@ const Home = () => {
 								</svg>
 							</motion.button>
 						</Link>
+						<motion.button
+							type="button"
+							whileHover={{ scale: 1.05, y: -2 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={openHireMeChat}
+							className="flex items-center px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl bg-white dark:bg-gray-900 border border-indigo-400 dark:border-indigo-600 text-indigo-700 dark:text-indigo-300 text-lg font-semibold transition-all duration-300"
+							aria-label="Hire Me Chat"
+						>
+							Hire Me
+						</motion.button>
 					</div>
 				</FadeUp>
 			</div>

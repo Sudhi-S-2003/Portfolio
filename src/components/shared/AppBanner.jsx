@@ -3,8 +3,6 @@ import { FiArrowDownCircle, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import developerLight from '../../images/developer.svg';
 import developerDark from '../../images/developer-dark.svg';
 import { motion } from 'framer-motion';
-import ThreeDBackground from '../animations/ThreeDBackground';
-import Hero3DScene from '../animations/Hero3DScene';
 import FadeUp from '../animations/FadeUp';
 
 const AppBanner = () => {
@@ -18,9 +16,6 @@ const AppBanner = () => {
 
 	return (
 		<section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24">
-			<ThreeDBackground />
-			<Hero3DScene />
-			
 			{/* Gradient Orbs */}
 			<div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" />
 			<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />

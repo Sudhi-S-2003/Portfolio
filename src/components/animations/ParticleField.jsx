@@ -1,49 +1,13 @@
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
-import * as THREE from 'three';
-
-function ParticleSystem() {
-	const meshRef = useRef();
-	const count = 2000;
-
-	const positions = useMemo(() => {
-		const positions = new Float32Array(count * 3);
-		for (let i = 0; i < count; i++) {
-			positions[i * 3] = (Math.random() - 0.5) * 50;
-			positions[i * 3 + 1] = (Math.random() - 0.5) * 50;
-			positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
-		}
-		return positions;
-	}, []);
-
-	useFrame((state) => {
-		if (meshRef.current) {
-			meshRef.current.rotation.x = state.clock.elapsedTime * 0.1;
-			meshRef.current.rotation.y = state.clock.elapsedTime * 0.15;
-		}
-	});
-
-	return (
-		<Points ref={meshRef} positions={positions} stride={3} frustumCulled={false}>
-			<PointMaterial
-				transparent
-				color="#6366f1"
-				size={0.1}
-				sizeAttenuation={true}
-				depthWrite={false}
-				blending={THREE.AdditiveBlending}
-			/>
-		</Points>
-	);
-}
+import { motion } from 'framer-motion';
 
 const ParticleField = () => {
 	return (
 		<div className="fixed inset-0 -z-10 pointer-events-none">
-			<Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
-				<ParticleSystem />
-			</Canvas>
+			<motion.div
+				className="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(99,102,241,0.16)_0,transparent_30%),radial-gradient(circle_at_80%_70%,rgba(168,85,247,0.14)_0,transparent_34%),radial-gradient(circle_at_50%_50%,rgba(236,72,153,0.10)_0,transparent_38%)]"
+				animate={{ opacity: [0.55, 0.75, 0.55] }}
+				transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+			/>
 		</div>
 	);
 };

@@ -1,6 +1,11 @@
 import { AnimatePresence } from 'framer-motion';
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	useLocation,
+} from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import AppFooter from './components/shared/AppFooter';
 import AppHeader from './components/shared/AppHeader';
@@ -14,6 +19,7 @@ const Contact = lazy(() => import('./pages/Contact.jsx'));
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
 const ProjectSingle = lazy(() => import('./pages/ProjectSingle.jsx'));
+const ServiceChat = lazy(() => import('./pages/ServiceChat.jsx'));
 
 const LoadingFallback = () => (
 	<div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
@@ -32,6 +38,32 @@ const LoadingFallback = () => (
 	</div>
 );
 
+function AppLayout() {
+	const location = useLocation();
+	const isServiceChatRoute = location.pathname === '/service/chat';
+
+	return (
+		<>
+			<ScrollToTop />
+			{!isServiceChatRoute ? <AppHeader /> : null}
+			<Suspense fallback={<LoadingFallback />}>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="projects" element={<Projects />} />
+					<Route
+						path="projects/single-project"
+						element={<ProjectSingle />}
+					/>
+					<Route path="about" element={<About />} />
+					<Route path="contact" element={<Contact />} />
+					<Route path="service/chat" element={<ServiceChat />} />
+				</Routes>
+			</Suspense>
+			{!isServiceChatRoute ? <AppFooter /> : null}
+		</>
+	);
+}
+
 function App() {
 	useSmoothScroll();
 
@@ -39,21 +71,7 @@ function App() {
 		<AnimatePresence mode="wait">
 			<div className="bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
 				<Router>
-					<ScrollToTop />
-					<AppHeader />
-					<Suspense fallback={<LoadingFallback />}>
-						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="projects" element={<Projects />} />
-							<Route
-								path="projects/single-project"
-								element={<ProjectSingle />}
-							/>
-							<Route path="about" element={<About />} />
-							<Route path="contact" element={<Contact />} />
-						</Routes>
-					</Suspense>
-					<AppFooter />
+					<AppLayout />
 				</Router>
 				<UseScrollToTop />
 			</div>

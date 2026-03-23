@@ -1,44 +1,24 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { MeshDistortMaterial, Sphere } from '@react-three/drei';
-
-/* eslint-disable react-hooks/rules-of-hooks */
-function FloatingSphere({ position, color, speed = 1 }) {
-	const meshRef = useRef();
-
-	// useFrame is a hook from react-three/fiber that must be used inside Canvas context
-	useFrame((state) => {
-		if (meshRef.current) {
-			meshRef.current.rotation.x += 0.01 * speed;
-			meshRef.current.rotation.y += 0.01 * speed;
-			meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed) * 0.5;
-		}
-	});
-
-	return (
-		<Sphere ref={meshRef} args={[1, 100, 200]} position={position}>
-			<MeshDistortMaterial
-				color={color}
-				attach="material"
-				distort={0.3}
-				speed={2}
-				roughness={0.1}
-				metalness={0.8}
-				transparent
-				opacity={0.6}
-			/>
-		</Sphere>
-	);
-}
-/* eslint-enable react-hooks/rules-of-hooks */
+import { motion } from 'framer-motion';
 
 const FloatingGeometry = () => {
 	return (
-		<>
-			<FloatingSphere position={[-5, 2, -5]} color="#6366f1" speed={0.5} />
-			<FloatingSphere position={[5, -2, -5]} color="#a855f7" speed={0.7} />
-			<FloatingSphere position={[0, 0, -8]} color="#ec4899" speed={0.6} />
-		</>
+		<div className="absolute inset-0 -z-10 pointer-events-none">
+			<motion.span
+				className="absolute left-20 top-24 block h-20 w-20 rounded-full bg-indigo-500/25 blur-2xl"
+				animate={{ y: [0, -12, 0], opacity: [0.45, 0.75, 0.45] }}
+				transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+			/>
+			<motion.span
+				className="absolute right-20 top-1/3 block h-24 w-24 rounded-full bg-purple-500/25 blur-2xl"
+				animate={{ y: [0, 10, 0], opacity: [0.4, 0.7, 0.4] }}
+				transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+			/>
+			<motion.span
+				className="absolute left-1/2 bottom-20 block h-16 w-16 -translate-x-1/2 rounded-full bg-pink-500/25 blur-2xl"
+				animate={{ y: [0, -8, 0], opacity: [0.4, 0.65, 0.4] }}
+				transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+			/>
+		</div>
 	);
 };
 

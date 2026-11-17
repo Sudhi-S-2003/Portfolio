@@ -1,0 +1,104 @@
+/*
+ * Design tokens. One source for colour, type and spacing; components use only these.
+ *
+ * Colours are warm neutrals with one muted slate-green accent. light-dark() picks the value from the
+ * active color-scheme, which follows the system unless the visitor chose a theme (data-theme on <html>).
+ *
+ * Measured contrast (WCAG 2.2: text needs 4.5:1, field borders 3:1), computed 17 Nov 2026:
+ *   light  ink on paper 15.43   ink-muted on paper 6.58 (raised 6.98, sunken 6.07)   accent on paper 6.98
+ *          accent-ink on accent 6.98   success 5.41 / warning 5.00 / danger 5.72 on their soft backgrounds
+ *          field border #8a8377 on raised 3.66
+ *   dark   ink on paper 14.81   ink-muted on paper 7.07 (raised 6.57)   accent on paper 9.26
+ *          accent-ink on accent 9.26   success 7.37 / warning 7.97 / danger 7.51 on their soft backgrounds
+ *          field border #736d63 on raised 3.28
+ * --line and --line-strong are decorative dividers only; anything a visitor must see to use it gets --line-field.
+ */
+:root {
+  color-scheme: light dark;
+
+  --paper: light-dark(#f7f5f0, #171614);
+  --paper-raised: light-dark(#fdfcf9, #1f1d1a);
+  --paper-sunken: light-dark(#efece5, #121110);
+  --ink: light-dark(#1f1d1a, #ece8e1);
+  --ink-muted: light-dark(#5c574f, #a8a197);
+  --line: light-dark(#dedad1, #33302b);
+  --line-strong: light-dark(#c2bbae, #4b463f);
+  --line-field: light-dark(#8a8377, #736d63);
+
+  --accent: light-dark(#3b5a4f, #a3c0b3);
+  --accent-hover: light-dark(#2d463d, #bdd3c9);
+  --accent-ink: light-dark(#f7f5f0, #171614);
+  --accent-soft: light-dark(#e2e9e5, #233029);
+
+  --success: light-dark(#3d6847, #93c19c);
+  --success-soft: light-dark(#e5eee6, #1d2a20);
+  --warning: light-dark(#7d6020, #d8b86e);
+  --warning-soft: light-dark(#f3ecda, #2b2517);
+  --danger: light-dark(#983a30, #e4a197);
+  --danger-soft: light-dark(#f5e4e1, #2f1d1a);
+
+  --radius: 6px;
+  --shadow-overlay: 0 12px 32px -12px light-dark(rgb(31 29 26 / 0.25), rgb(0 0 0 / 0.6));
+
+  /* Type. Latin faces first; script faces after them take over glyph by glyph. */
+  --font-sans-stack: 'General Sans', 'Noto Sans Malayalam Variable', 'Noto Sans Devanagari Variable', system-ui,
+    -apple-system, 'Segoe UI', sans-serif;
+  --font-serif-stack: 'Newsreader Variable', 'Noto Serif Malayalam Variable', 'Noto Serif Devanagari Variable',
+    Georgia, serif;
+  --font-mono-stack: 'JetBrains Mono Variable', 'Noto Sans Malayalam Variable', 'Noto Sans Devanagari Variable',
+    ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --meta-size: 0.8125rem;
+
+  --text-body: 1.0625rem;
+  --leading-body: 1.65;
+  --leading-heading: 1.2;
+  --heading-tracking: -0.015em;
+  --measure: 40rem;
+}
+
+/* Browsers without light-dark() (Safari before 17.5) get the light palette instead of no colours at all. */
+@supports not (color: light-dark(#000, #fff)) {
+  :root {
+    --paper: #f7f5f0;
+    --paper-raised: #fdfcf9;
+    --paper-sunken: #efece5;
+    --ink: #1f1d1a;
+    --ink-muted: #5c574f;
+    --line: #dedad1;
+    --line-strong: #c2bbae;
+    --line-field: #8a8377;
+    --accent: #3b5a4f;
+    --accent-hover: #2d463d;
+    --accent-ink: #f7f5f0;
+    --accent-soft: #e2e9e5;
+    --success: #3d6847;
+    --success-soft: #e5eee6;
+    --warning: #7d6020;
+    --warning-soft: #f3ecda;
+    --danger: #983a30;
+    --danger-soft: #f5e4e1;
+  }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Malayalam and Devanagari have tall stacked forms: give lines more room and drop negative tracking. */
+:root:lang(ml) {
+  --leading-body: 1.9;
+  --leading-heading: 1.45;
+  --heading-tracking: 0;
+  --meta-size: 0.875rem;
+}
+
+:root:lang(hi) {
+  --leading-body: 1.85;
+  --leading-heading: 1.4;
+  --heading-tracking: 0;
+  --meta-size: 0.875rem;
+}

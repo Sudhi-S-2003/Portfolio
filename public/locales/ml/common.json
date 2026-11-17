@@ -1,0 +1,38 @@
+{
+  "siteName": "Sudhi S",
+  "skipToContent": "നേരെ പ്രധാന ഭാഗത്തേക്ക് പോകൂ",
+  "nav": {
+    "label": "പ്രധാന മെനു",
+    "home": "ഹോം",
+    "work": "വർക്ക്",
+    "about": "എന്നെക്കുറിച്ച്",
+    "contact": "കോൺടാക്റ്റ്",
+    "openMenu": "മെനു തുറക്കൂ",
+    "menuTitle": "മെനു"
+  },
+  "language": {
+    "label": "ഭാഷ"
+  },
+  "theme": {
+    "toLight": "ലൈറ്റ് തീം ആക്കൂ",
+    "toDark": "ഡാർക്ക് തീം ആക്കൂ"
+  },
+  "actions": {
+    "close": "അടയ്ക്കൂ",
+    "hireMe": "എന്നെ ഹയർ ചെയ്യൂ",
+    "downloadResume": "റെസ്യൂമെ ഡൗൺലോഡ് ചെയ്യൂ (PDF)",
+    "viewAllWork": "എല്ലാ വർക്കുകളും കാണൂ",
+    "backToWork": "എല്ലാ വർക്കുകളിലേക്കും തിരികെ പോകൂ",
+    "goHome": "ഹോം പേജിലേക്ക് പോകൂ",
+    "opensInNewTab": "പുതിയ ടാബിൽ തുറക്കും"
+  },
+  "footer": {
+    "colophon": "ഈ സൈറ്റ് ഞാൻ തന്നെ ഡിസൈൻ ചെയ്ത്, React-ഉം Vite-ഉം വെച്ച് ഉണ്ടാക്കിയതാണ്. ഫോണ്ടുകൾ General Sans, Newsreader, Noto. ഹോസ്റ്റ് ചെയ്തിരിക്കുന്നത് Netlify-ൽ.",
+    "localTime": "കേരളത്തിൽ ഇപ്പോൾ സമയം {{time}} ആയി.",
+    "elsewhere": "എന്നെ ഇവിടെയും കാണാം",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "ഇമെയിൽ",
+    "copyright": "© {{year}} Sudhi S"
+  }
+}

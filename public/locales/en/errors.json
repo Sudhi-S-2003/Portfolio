@@ -1,0 +1,7 @@
+{
+  "notFound": {
+    "code": "Error 404",
+    "title": "This page doesn't exist",
+    "body": "The link may be old, or the address may have a typo. Everything I've written is one click away from the home page."
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.netlify/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Generated at build time from src/assets by scripts/optimize-images.ts
+public/images/
+
+# Private resume (contains a phone number); only .gitkeep is tracked
+resume/private/*
+!resume/private/.gitkeep

@@ -1,0 +1,5 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["src/entry-server.tsx", "scripts/*.ts", "netlify/functions/*.ts"],
+  "project": ["src/**/*.{ts,tsx,css}", "scripts/**/*.ts", "netlify/**/*.ts"]
+}

@@ -1,0 +1,25 @@
+{
+  "home": {
+    "title": "Sudhi S · Full-stack developer in Kerala",
+    "description": "I build backend-heavy web systems: services, queues and databases, with the React screens on top. Open to remote roles or roles in Kerala."
+  },
+  "work": {
+    "title": "Work · Sudhi S",
+    "description": "Case studies: a distribution ERP built as eleven services, a self-hosted email platform, an API contract tool, and more."
+  },
+  "about": {
+    "title": "About · Sudhi S",
+    "description": "How I got into software, how I like to work, the tools I use, and the kind of role I'm looking for."
+  },
+  "contact": {
+    "title": "Contact · Sudhi S",
+    "description": "Send me a message about a role or a project. It is saved straight away and reaches me even when my chat server is slow to wake up."
+  },
+  "notFound": {
+    "title": "Page not found · Sudhi S",
+    "description": "This page doesn't exist. Head back to the home page to find my work."
+  },
+  "caseStudy": {
+    "title": "{{project}} · Sudhi S"
+  }
+}

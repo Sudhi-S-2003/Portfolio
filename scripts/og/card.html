@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- 1200x630 link-preview card, filled from the query string by scripts/og/render.ps1. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'Newsreader';
+        src: url('newsreader.woff2') format('woff2-variations');
+        font-weight: 200 800;
+      }
+      @font-face {
+        font-family: 'General Sans';
+        src: url('../../src/design/fonts/GeneralSans-Variable.woff2') format('woff2-variations');
+        font-weight: 200 700;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #f7f5f0;
+        color: #1f1d1a;
+      }
+      body {
+        box-sizing: border-box;
+        padding: 68px 80px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: 'General Sans', 'Segoe UI', sans-serif;
+      }
+      .label {
+        font-family: Consolas, ui-monospace, monospace;
+        font-size: 22px;
+        color: #5c574f;
+      }
+      h1 {
+        margin: 0;
+        max-width: 980px;
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 500;
+        font-size: 72px;
+        line-height: 1.06;
+        letter-spacing: -0.015em;
+      }
+      p {
+        margin: 22px 0 0;
+        max-width: 960px;
+        font-size: 29px;
+        line-height: 1.4;
+        color: #5c574f;
+      }
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        border-top: 2px solid #dedad1;
+        padding-top: 22px;
+        font-size: 24px;
+      }
+      .name {
+        font-weight: 600;
+      }
+      .url {
+        color: #3b5a4f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="label" id="label"></div>
+    <main>
+      <h1 id="title"></h1>
+      <p id="summary"></p>
+    </main>
+    <footer>
+      <span class="name">Sudhi S · Full-stack developer, Kerala</span>
+      <span class="url">sudhis.netlify.app</span>
+    </footer>
+    <script>
+      const query = new URLSearchParams(location.search);
+      for (const id of ['label', 'title', 'summary']) document.getElementById(id).textContent = query.get(id) || '';
+    </script>
+  </body>
+</html>

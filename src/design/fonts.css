@@ -1,0 +1,30 @@
+/*
+ * Fonts. Everything is self-hosted: no request goes to a font CDN.
+ * Each Fontsource face carries a unicode-range, so the Malayalam and Devanagari files download only when
+ * that script is actually on screen. Latin text keeps General Sans / Newsreader in every language because
+ * those come first in each stack and the browser falls back glyph by glyph.
+ */
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource-variable/noto-sans-malayalam/wght.css';
+@import '@fontsource-variable/noto-serif-malayalam/wght.css';
+@import '@fontsource-variable/noto-sans-devanagari/wght.css';
+@import '@fontsource-variable/noto-serif-devanagari/wght.css';
+
+/* General Sans (Indian Type Foundry, free licence via Fontshare). */
+@font-face {
+  font-family: 'General Sans';
+  src: url('./fonts/GeneralSans-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('./fonts/GeneralSans-VariableItalic.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: italic;
+  font-display: swap;
+}

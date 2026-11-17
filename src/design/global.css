@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+@import './fonts.css';
+@import './tokens.css';
+
+/* Only the design system's colours exist as utilities: no stray purples or default greys. */
+@theme {
+  --color-*: initial;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunken: var(--paper-sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-field: var(--line-field);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-sans: var(--font-sans-stack);
+  --font-serif: var(--font-serif-stack);
+  --font-mono: var(--font-mono-stack);
+
+  --radius-ui: var(--radius);
+  --shadow-overlay: var(--shadow-overlay);
+  --container-measure: var(--measure);
+}
+
+@layer base {
+  html {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans-stack);
+    line-height: var(--leading-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: var(--text-body);
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif-stack);
+    font-weight: 500;
+    line-height: var(--leading-heading);
+    letter-spacing: var(--heading-tracking);
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
+    transition: text-decoration-color 150ms ease, color 150ms ease;
+  }
+
+  a:hover {
+    color: var(--accent-hover);
+    text-decoration-color: currentColor;
+  }
+
+  /* Tailwind v4's reset gives buttons the default arrow; anything clickable should show the pointer. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  [role='menuitem'],
+  [role='menuitemradio'],
+  [role='option'],
+  [role='tab'],
+  select:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--accent-soft);
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/*
+ * Malayalam and Hindi words run long, so on phones the main heading steps down a size (five lines at 36px felt
+ * heavy). Unlayered on purpose: it must win over the h1's own size utilities.
+ */
+@media (max-width: 639px) {
+  :root:lang(ml) h1,
+  :root:lang(hi) h1 {
+    font-size: 1.875rem;
+  }
+}
+
+@layer components {
+  /* Long-form text in case studies and the about page. */
+  .prose {
+    max-width: var(--measure);
+  }
+
+  .prose > * + * {
+    margin-top: 1em;
+  }
+
+  .prose ul {
+    list-style: disc;
+    padding-inline-start: 1.25em;
+  }
+
+  .prose li + li {
+    margin-top: 0.4em;
+  }
+
+  .prose li::marker {
+    color: var(--ink-muted);
+  }
+
+  .prose strong {
+    font-weight: 600;
+  }
+
+  /* Small monospace metadata: years, stacks, labels. Never all caps. */
+  .meta {
+    font-family: var(--font-mono-stack);
+    font-size: var(--meta-size);
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  /* Monospace suits Latin labels and numbers; Malayalam and Hindi words read better in their own sans face. */
+  :root:lang(ml) .meta,
+  :root:lang(hi) .meta {
+    font-family: var(--font-sans-stack);
+  }
+}

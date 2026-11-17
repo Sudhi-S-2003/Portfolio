@@ -1,0 +1,22 @@
+{
+  "title": "Work",
+  "intro": "Things I've built, newest first. Each case study covers the problem, how the system works and the decisions behind it.",
+  "stackLabel": "Stack",
+  "caseStudy": {
+    "role": "Role",
+    "period": "When",
+    "status": "Status",
+    "stack": "Stack",
+    "links": "Links",
+    "source": "Source code on GitHub",
+    "live": "Live site",
+    "private": "The code is private because this is client work.",
+    "problem": "The problem",
+    "built": "What I built",
+    "how": "How it works",
+    "decisions": "Decisions",
+    "hard": "What was hard",
+    "next": "What's next",
+    "nextProject": "Next case study"
+  }
+}

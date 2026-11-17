@@ -1,0 +1,37 @@
+# Run everything in Node 26 without installing Node on the host.
+#   docker compose up dev                 -> dev server on http://localhost:5173
+#   docker compose run --rm run npm test  -> any one-off command
+#   docker compose up preview             -> built site on http://localhost:4173
+services:
+  dev:
+    image: node:26-bookworm-slim
+    working_dir: /app
+    environment:
+      VITE_POLL: "1"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "5173:5173"
+    command: npm run dev
+
+  preview:
+    image: node:26-bookworm-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "4173:4173"
+    command: npm run preview
+
+  run:
+    image: node:26-bookworm-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:
+    name: portfolio-node-modules-26

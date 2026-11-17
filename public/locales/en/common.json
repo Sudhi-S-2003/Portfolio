@@ -1,0 +1,38 @@
+{
+  "siteName": "Sudhi S",
+  "skipToContent": "Skip to main content",
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "menuTitle": "Menu"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "actions": {
+    "close": "Close",
+    "hireMe": "Hire me",
+    "downloadResume": "Download resume (PDF)",
+    "viewAllWork": "See all work",
+    "backToWork": "Back to all work",
+    "goHome": "Go to the home page",
+    "opensInNewTab": "opens in a new tab"
+  },
+  "footer": {
+    "colophon": "Designed and built by me with React and Vite, set in General Sans, Newsreader and Noto, hosted on Netlify.",
+    "localTime": "It's {{time}} in Kerala right now.",
+    "elsewhere": "Elsewhere",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "copyright": "© {{year}} Sudhi S"
+  }
+}

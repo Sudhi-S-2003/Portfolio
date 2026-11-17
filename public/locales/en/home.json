@@ -1,0 +1,38 @@
+{
+  "photoAlt": "Sudhi in a checked shirt, standing outdoors among trees",
+  "title": "I'm Sudhi, a full-stack developer who works mostly on the backend.",
+  "intro": "I build the services, queues and databases that keep orders, stock and money correct, and the React screens on top of them. I've been at Oxium Technologies in Thiruvananthapuram since June 2025.",
+  "openToWork": "I'm open to backend-leaning full-stack roles, remote or in Kerala.",
+  "sections": {
+    "now": "Now",
+    "work": "Selected work",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "now": {
+    "updated": "Updated {{date}}",
+    "body": "At work I'm building a distribution ERP for a food wholesaler: eleven services, seven desks and a TallyPrime connector. In my own time I'm working on DispatchHub, a self-hosted email platform."
+  },
+  "experience": {
+    "present": "now",
+    "oxium": {
+      "role": "Junior Software Developer",
+      "org": "Oxium Technologies",
+      "body": "Building a distribution ERP for a client in 2026. Before that, seller and buyer apps on ONDC, India's open network for digital commerce, where my seller onboarding module was used by more than 500 merchants."
+    },
+    "avodha": {
+      "role": "MERN stack intern",
+      "org": "Avodha Technologies",
+      "body": "A ten-month internship building React, Node.js and MongoDB apps in a small team."
+    },
+    "education": {
+      "role": "BSc Computer Science",
+      "org": "University of Kerala, UIT Pirappancode",
+      "body": "Where I wrote my first programs and found out I liked the parts nobody sees."
+    }
+  },
+  "contact": {
+    "body": "If you're hiring or have a project in mind, the contact page is the quickest way to reach me. You can also email me directly.",
+    "cta": "Write to me"
+  }
+}

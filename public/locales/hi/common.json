@@ -1,0 +1,38 @@
+{
+  "siteName": "Sudhi S",
+  "skipToContent": "सीधे मुख्य कंटेंट पर जाएँ",
+  "nav": {
+    "label": "मुख्य",
+    "home": "होम",
+    "work": "काम",
+    "about": "मेरे बारे में",
+    "contact": "संपर्क",
+    "openMenu": "मेन्यू खोलें",
+    "menuTitle": "मेन्यू"
+  },
+  "language": {
+    "label": "भाषा"
+  },
+  "theme": {
+    "toLight": "लाइट थीम पर स्विच करें",
+    "toDark": "डार्क थीम पर स्विच करें"
+  },
+  "actions": {
+    "close": "बंद करें",
+    "hireMe": "मुझे हायर करें",
+    "downloadResume": "रिज़्यूमे डाउनलोड करें (PDF)",
+    "viewAllWork": "सारा काम देखें",
+    "backToWork": "काम की लिस्ट पर वापस जाएँ",
+    "goHome": "होम पेज पर जाएँ",
+    "opensInNewTab": "नए टैब में खुलता है"
+  },
+  "footer": {
+    "colophon": "यह साइट मैंने ख़ुद डिज़ाइन की है और React और Vite से बनाई है। फ़ॉन्ट General Sans, Newsreader और Noto हैं, और होस्टिंग Netlify पर है।",
+    "localTime": "केरल में अभी {{time}} हो रहे हैं।",
+    "elsewhere": "मुझसे जुड़ें",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "ईमेल",
+    "copyright": "© {{year}} Sudhi S"
+  }
+}

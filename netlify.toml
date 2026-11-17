@@ -1,0 +1,33 @@
+# Build: optimise images, build the client and the server entry, write static HTML per page, check links.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "26"
+
+# Security and cache headers are generated into dist/_headers by scripts/prerender.ts
+# (the Content-Security-Policy needs the hash of the inline theme script).
+
+# Old URLs from the previous site.
+[[redirects]]
+  from = "/projects"
+  to = "/work"
+  status = 301
+
+[[redirects]]
+  from = "/projects/*"
+  to = "/work"
+  status = 301
+
+[[redirects]]
+  from = "/files/Sudhi-Resume.pdf"
+  to = "/files/Sudhi-S-Resume.pdf"
+  status = 301
+
+# Old chat links (/service/chat?sid=...) are handled in the browser, which forwards them to /contact.
+[[redirects]]
+  from = "/service/chat"
+  to = "/app.html"
+  status = 200

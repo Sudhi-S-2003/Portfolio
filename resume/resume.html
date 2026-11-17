@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sudhi S – Resume</title>
+    <meta name="author" content="Sudhi S" />
+    <meta name="description" content="Resume of Sudhi S, full-stack developer (backend-leaning), Thiruvananthapuram, Kerala." />
+    <link rel="stylesheet" href="resume.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Sudhi S</h1>
+      <p class="headline">Full-stack developer, backend-leaning</p>
+      <p class="contact">
+        <span>Thiruvananthapuram, Kerala, India</span>
+        <span><a href="mailto:sudhiselampa19@gmail.com">sudhiselampa19@gmail.com</a></span><!--phone-->
+      </p>
+      <p class="contact">
+        <span><a href="https://sudhis.netlify.app">sudhis.netlify.app</a></span>
+        <span><a href="https://www.linkedin.com/in/sudhi-s-a2a4ab30b">linkedin.com/in/sudhi-s-a2a4ab30b</a></span>
+        <span><a href="https://github.com/Sudhi-S-2003">github.com/Sudhi-S-2003</a></span>
+      </p>
+    </header>
+
+    <section>
+      <h2>SUMMARY</h2>
+      <p class="summary">
+        Full-stack developer with over two years of hands-on experience, including a ten-month internship, building web
+        systems in Node.js, TypeScript and React. Most of my work is on the backend: service boundaries, PostgreSQL and MongoDB data models, queues and
+        background jobs, and deployment with Docker and Kubernetes. Comfortable owning a feature from the database to
+        the screen. Open to backend-leaning full-stack roles, remote or in Kerala.
+      </p>
+    </section>
+
+    <section>
+      <h2>EXPERIENCE</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Junior Software Developer, <span class="org">Oxium Technologies</span></p>
+          <p class="entry-when">Jun 2025 – Present</p>
+        </div>
+        <ul>
+          <li>
+            Designed and built a distribution ERP for a food wholesaler that runs two companies (client project):
+            11 NestJS + Fastify services with Prisma, each owning its own PostgreSQL database, sharing events over Kafka,
+            with Redis; staging on k3s, deployed by Argo CD (GitOps) behind Traefik and Caddy.
+          </li>
+          <li>
+            Built its keyboard-first React 18 + Vite + TanStack Query client: seven desks (billing, purchase, godown,
+            logistics, supervisor, management, shared), permission-driven navigation, 827 automated tests.
+          </li>
+          <li>
+            Integrated GST e-Invoice and e-Way Bill, generated PDF documents, and a TallyPrime sync agent with a write
+            queue, read-back and nightly reconciliation.
+          </li>
+          <li>
+            Wrote an API test tool that recorded 4,919 request and response cases across 403 routes on staging, which
+            exposed routes that were not safe to retry before production.
+          </li>
+          <li>Earlier: built seller onboarding for ONDC seller and buyer apps, used by more than 500 merchants.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <p class="entry-title">MERN Stack Development Intern, <span class="org">Avodha Technologies</span></p>
+          <p class="entry-when">Aug 2024 – May 2025</p>
+        </div>
+        <ul>
+          <li>Built React, Node.js and MongoDB applications in a team: authentication, REST APIs, database design.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>PROJECTS</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <p class="entry-title">DispatchHub <span class="org">· github.com/Sudhi-S-2003/DispatchHub</span></p>
+          <p class="entry-when">2026</p>
+        </div>
+        <p class="entry-sub">NestJS, Next.js, PostgreSQL, Redis, BullMQ, Postal</p>
+        <ul>
+          <li>
+            Self-hosted multi-tenant email delivery: per-domain 2048-bit DKIM keys encrypted with AES-256-GCM, live
+            SPF/DKIM/MX checks, four CRC32-hashed Redis queue shards plus a priority lane for OTPs, and a wallet charged
+            in the same transaction that queues a message, refunded automatically on rejection.
+          </li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <p class="entry-title">ApiForge <span class="org">· github.com/Sudhi-S-2003/ApiForge</span></p>
+          <p class="entry-when">2026</p>
+        </div>
+        <p class="entry-sub">NestJS, Prisma, PostgreSQL, Next.js, BullMQ, Ajv</p>
+        <ul>
+          <li>
+            API contract, documentation and testing platform (early stage, design documents complete): OpenAPI 3.1 and
+            Postman v2.1 import and export through a neutral contract model, an SSRF-hardened request runner, Argon2id
+            with rotating refresh tokens.
+          </li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Movie booking platform <span class="org">· github.com/Sudhi-S-2003/movie_booking</span></p>
+          <p class="entry-when">2025 – 2026</p>
+        </div>
+        <p class="entry-sub">TypeScript, Express, MongoDB, Redis, BullMQ, Socket.io, React</p>
+        <ul>
+          <li>
+            Seat booking with payments and subscriptions, real-time chat, passkey sign-in (WebAuthn) and TOTP 2FA, and a
+            Git-like code-sharing service with line diffs and HMAC-signed expiring links.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>SKILLS</h2>
+      <dl class="skills">
+        <dt>Languages</dt>
+        <dd>TypeScript, JavaScript, SQL</dd>
+        <dt>Backend</dt>
+        <dd>Node.js, NestJS, Express, Fastify, Prisma, REST API design</dd>
+        <dt>Data, messaging</dt>
+        <dd>PostgreSQL, MongoDB, Redis, Kafka, BullMQ</dd>
+        <dt>Frontend</dt>
+        <dd>React, Next.js, TanStack Query, Zustand, Tailwind CSS</dd>
+        <dt>Infrastructure</dt>
+        <dd>Docker, Kubernetes (k3s), Argo CD, Traefik, Caddy, Git</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>EDUCATION</h2>
+      <div class="entry-head">
+        <p class="entry-title">BSc Computer Science, <span class="org">University of Kerala (UIT Pirappancode)</span></p>
+      </div>
+    </section>
+  </body>
+</html>

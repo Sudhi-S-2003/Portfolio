@@ -1,0 +1,103 @@
+{
+  "title": "Contact",
+  "lead": "Tell me about the role or the project. Your message is saved in your browser the moment you send it and goes on to me from there, even when my chat server is slow to wake up.",
+  "sections": {
+    "form": "Send a message",
+    "conversation": "Your conversation",
+    "elsewhere": "Other ways"
+  },
+  "form": {
+    "name": {
+      "label": "Your name",
+      "placeholder": "For example, Asha Menon"
+    },
+    "email": {
+      "label": "Email",
+      "hint": "So I can reply. I won't share it or add it to any list.",
+      "placeholder": "name@company.com"
+    },
+    "topic": {
+      "label": "What is it about?",
+      "options": {
+        "job": "A job opportunity",
+        "freelance": "A freelance project",
+        "other": "Something else"
+      }
+    },
+    "message": {
+      "label": "Message",
+      "hint": "A few lines is plenty: the role or project, and anything you'd like me to know.",
+      "placeholder": "Hi Sudhi, we're hiring a backend developer for…"
+    },
+    "honeypot": "Leave this field empty",
+    "submit": "Send message",
+    "sending": "Saving…",
+    "privacy": "Your message stays in this browser until it reaches me, then for five days so you can come back to the conversation."
+  },
+  "errors": {
+    "nameRequired": "Enter your name.",
+    "nameTooShort": "Your name needs at least 2 characters.",
+    "emailRequired": "Enter your email address.",
+    "emailInvalid": "Enter an email address like name@example.com.",
+    "messageRequired": "Write a short message.",
+    "messageTooShort": "Your message needs at least 10 characters.",
+    "messageTooLong": "Please keep your message under 4,000 characters.",
+    "tooFast": "That was very quick. Please check your message, then send it again."
+  },
+  "status": {
+    "loading": "Loading your conversation…",
+    "yourMessage": "Your message",
+    "chatTitle": "Chat with Sudhi",
+    "openChat": "Open the chat in a new tab",
+    "newMessage": "Send another message",
+    "emailInstead": "Email me instead",
+    "linkedinInstead": "Message me on LinkedIn",
+    "received": {
+      "title": "Message received",
+      "body": "I've got your message and will reply to {{email}}. The live chat isn't available right now; if it starts while you're here, it will open below."
+    },
+    "stalled": {
+      "title": "The chat server is still down",
+      "bodyPending": "I'll keep trying every few minutes, and again the next time you visit. If it's urgent, email me or send me a message on LinkedIn.",
+      "bodyFailed": "It hasn't reached me yet, so please email me or send me a message on LinkedIn. I'll keep trying the chat in the background."
+    },
+    "queued": {
+      "title": "Message saved",
+      "body": "Sending it now…"
+    },
+    "waking": {
+      "title": "Saved. Waiting for the chat server",
+      "body": "My chat server sleeps when nobody is using it and can take a minute to start. Your message is safe in this browser and will send on its own, so you can keep browsing the site."
+    },
+    "created": {
+      "title": "Chat opened",
+      "body": "Passing your message along…"
+    },
+    "delivered": {
+      "title": "Message delivered",
+      "body": "Thanks, {{name}}. I'll reply here or by email, and you can keep chatting below."
+    },
+    "failed": {
+      "title": "This message couldn't be sent",
+      "body": "The chat server refused it. Please email me instead and I'll pick it up from there."
+    },
+    "notFound": {
+      "title": "This conversation has ended",
+      "body": "Conversations are kept for five days. You can send a new message."
+    },
+    "emailedInstead": {
+      "title": "Sent by email instead",
+      "body": "Your browser wouldn't let the site save your message, so it came to me by email. I'll reply to {{email}}."
+    },
+    "storageBlocked": {
+      "title": "Your browser blocked saving the message",
+      "body": "This can happen in private browsing. Please email me directly and I'll reply from there."
+    }
+  },
+  "elsewhere": {
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "I'm in Thiruvananthapuram, Kerala (India Standard Time, UTC+5:30)."
+  }
+}

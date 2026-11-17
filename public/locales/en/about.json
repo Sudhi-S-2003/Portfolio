@@ -1,0 +1,36 @@
+{
+  "title": "About",
+  "lead": "I'm a full-stack developer who likes the backend best: the data model, the queues, and the rules that keep a business's numbers right.",
+  "sections": {
+    "story": "Story",
+    "howIWork": "How I work",
+    "lookingFor": "What I'm looking for",
+    "tools": "Tools",
+    "resume": "Resume"
+  },
+  "story": [
+    "I studied computer science at the University of Kerala, at UIT Pirappancode. After graduating in 2024 I spent ten months as a MERN stack intern at Avodha Technologies, building React, Node.js and MongoDB apps.",
+    "In June 2025 I joined Oxium Technologies. I started on seller and buyer apps for ONDC, India's open network for digital commerce, and now I build a distribution ERP for a food wholesaler, from the database up to the screens.",
+    "Outside work I build things to understand how they really work: an email platform to learn mail delivery, an API tool to think properly about contracts, and a booking app that keeps growing new parts."
+  ],
+  "howIWork": [
+    "I write the design down before the code, and keep checking it against the code as both change.",
+    "I test against real systems where I can. Recorded requests against a staging server catch things that mocks never will.",
+    "I care about the unglamorous parts: retries that are safe to repeat, permissions that match how people really work, and error messages someone can act on.",
+    "I use AI coding assistants to move faster on UI work and boilerplate. The architecture, data models and backend logic are my own, and I review every line before it ships."
+  ],
+  "lookingFor": "A backend-leaning full-stack role, remote or in Kerala, on a team that ships to real users and talks openly about trade-offs. I'm most at home in Node.js and TypeScript, and I want to go deeper into distributed systems.",
+  "tools": {
+    "caption": "Tools I use",
+    "area": "Area",
+    "tools": "Tools",
+    "backend": "Backend",
+    "data": "Data and messaging",
+    "frontend": "Frontend",
+    "infra": "Infrastructure"
+  },
+  "resume": {
+    "body": "A one-page summary of all this, in English.",
+    "updated": "Updated November 2026."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "distribution-erp": {
+    "title": "Distribution ERP for a food wholesaler",
+    "summary": "One system for a wholesaler that runs two companies: eleven services, seven desks, GST e-invoicing and a TallyPrime connector.",
+    "role": "Client project at Oxium Technologies. I designed and built the backend services, the web client and the deployment.",
+    "period": "2026",
+    "status": "Running on staging. Production is next.",
+    "problem": "The business sells food and household goods wholesale through two companies that share stock, staff and trucks, and keeps its accounts in TallyPrime. It needed one system for billing, the warehouse, purchasing and dispatch that keeps the two companies' books apart and stays in step with Tally.",
+    "built": [
+      "A backend split the way the business is organised: eleven services covering staff and sign-in, customers and credit, orders, inventory, dispatch, purchasing, GST compliance, scanned documents, email, reports and Tally sync. Each one owns its own PostgreSQL database.",
+      "A keyboard-first web client with seven desks, one for each kind of work: billing, purchase, godown, logistics and driver, supervisor, management, and shared tools. What a person can see and do comes from their permissions, not from a fixed job title.",
+      "GST e-invoices and e-way bills, printable documents, and a small agent on the accountant's PC that writes vouchers into TallyPrime and compares them with the ERP every night."
+    ],
+    "how": "Requests come in through Caddy and Traefik. Each request says which company it is for, so the same people can work for both companies in one session. Services share events over Kafka rather than calling each other for everything.",
+    "diagramCaption": "How the parts connect. Staging runs on k3s and is deployed by Argo CD from a GitOps repository.",
+    "decisions": [
+      {
+        "title": "One database per service",
+        "body": "It is more work than one shared database, but one desk's heavy query can't lock another desk's tables, and every rule that crosses desks has to go through an API that I can test."
+      },
+      {
+        "title": "Events for news, HTTP for questions",
+        "body": "When an invoice is created, inventory, Tally sync and email all need to know. Publishing one event is simpler and safer than having billing call three other services and handle each failure."
+      },
+      {
+        "title": "Permissions decide the screen",
+        "body": "In a business this size people cover for each other. Menus and buttons are built from the permissions a person has, so a new mix of duties needs a settings change, not new code."
+      },
+      {
+        "title": "Keyboard first",
+        "body": "Billing and godown staff spend their whole day in this app. Every desk can be driven without a mouse, and the shortcuts are the same everywhere."
+      },
+      {
+        "title": "Test against the real system",
+        "body": "I wrote a tool that records real requests and answers for every route on staging: 4,919 cases across 403 routes. It found gaps that unit tests couldn't, such as payment routes that weren't safe to retry."
+      }
+    ],
+    "hard": "Tally. The accountant trusts TallyPrime, so the ERP can't simply overwrite it. Every write goes into a queue, gets read back after it lands, and a nightly comparison flags anything that differs instead of quietly changing it.",
+    "next": "Moving the last screens off the practice data used during development, then hardening for production. If I started again, I would put idempotency keys on every write route from the first day instead of adding them later."
+  },
+  "dispatchhub": {
+    "title": "DispatchHub",
+    "summary": "Self-hosted email delivery for many tenants on top of Postal, with sharded queues and pay-before-send billing.",
+    "role": "Personal project. Design, backend, frontend and deployment.",
+    "period": "2026",
+    "status": "Deployed on my own test domain.",
+    "problem": "Sending email from your own domain at volume means DKIM keys, DNS records, queues that don't fall over, and billing that stays fair when a message is rejected. Hosted services handle this but get expensive, and Postal, the open-source mail server, has no idea of tenants or billing.",
+    "built": [
+      "Tenants add and verify their own sending domains inside DispatchHub. Each domain gets its own 2048-bit DKIM key, encrypted at rest with AES-256-GCM, and a live checker asks public DNS servers whether the SPF, DKIM and MX records are right.",
+      "A send API, with JWT for the web app and API keys for servers, that supports templates, reply-to, CC, BCC and attachments fetched from URLs.",
+      "A Gmail-style preview, so a tenant sees roughly what the recipient will see before anything is sent."
+    ],
+    "how": "The API never talks to Postal directly. It records each message in PostgreSQL and hands the work to Redis queues; a dispatcher takes messages from the queues and posts them to Postal.",
+    "diagramCaption": "The path a message takes from the API to an inbox.",
+    "decisions": [
+      {
+        "title": "Shard the queues by domain",
+        "body": "There are four Redis queues, and a CRC32 hash of the recipient's domain picks one. A slow mail provider holds up only its own shard, and mail to the same domain keeps its order."
+      },
+      {
+        "title": "A fast lane for login codes",
+        "body": "A one-time password can't wait behind a newsletter. One-to-one transactional mail goes to a priority queue that is always emptied first."
+      },
+      {
+        "title": "Small batches from Postgres",
+        "body": "The backlog lives in PostgreSQL, and the dispatcher pulls about 50 messages at a time into Redis. Redis stays small even when a tenant queues a large campaign."
+      },
+      {
+        "title": "Charge first, refund on rejection",
+        "body": "Each send takes money from the tenant's wallet in the same transaction that queues it. If the mail server rejects the message, the refund is automatic. There are no quotas, and no way to send without paying."
+      },
+      {
+        "title": "Treat attachment links as hostile",
+        "body": "Fetching a URL on someone else's behalf is a classic way into a server's private network, so private address ranges and the cloud metadata address are blocked before any request goes out."
+      }
+    ],
+    "hard": "Deliverability is mostly outside the code. SPF, DKIM and the sending server's reputation all have to line up before Gmail trusts a new domain, which is why the DNS checker shows exactly which record is missing or wrong.",
+    "next": "Reading Postal's bounce and complaint webhooks back into each tenant's dashboard, so tenants can see why a message didn't arrive."
+  },
+  "apiforge": {
+    "title": "ApiForge",
+    "summary": "API contracts, documentation and testing in one workspace. Early stage: design first, code catching up.",
+    "role": "Personal project. Product design, architecture and development.",
+    "period": "2026",
+    "status": "Early. The design documents are done and the first services are being built.",
+    "problem": "Teams often design an API in one tool, test it in another and publish the docs in a third, and the three slowly drift apart. I wanted one source of truth that the editor, the docs and the test runner all read from.",
+    "built": [
+      "Before writing much code I wrote the product requirements, the architecture, the database design, the security model and records of each major decision, the way I would want a team to start.",
+      "A neutral contract model that OpenAPI 3.1 and Postman v2.1 both import into and export from, so neither format is the 'real' one.",
+      "A NestJS and Prisma API and a Next.js web app with the Monaco editor, sharing types from one package in a single npm-workspaces repository."
+    ],
+    "how": "The web app and the API share one contract package. Slow jobs such as PDF export go through a queue, and test requests run through a proxy that refuses to call private addresses.",
+    "diagramCaption": "The repository and the parts that run.",
+    "decisions": [
+      {
+        "title": "A neutral contract model",
+        "body": "Storing OpenAPI directly would make Postman a second-class import. A neutral model costs a translation step each way, but every format passes through the same validated structure."
+      },
+      {
+        "title": "Ajv for validation",
+        "body": "Ajv supports JSON Schema 2020-12 in full, including references that point back at themselves, which large API schemas often contain."
+      },
+      {
+        "title": "A test runner that can't be turned against the server",
+        "body": "A runner that calls any URL a user types is an open door into the server's network. Requests go through a proxy that resolves the address first and blocks private and metadata addresses, including after redirects."
+      },
+      {
+        "title": "Careful sign-in",
+        "body": "Short-lived access tokens, refresh tokens that change on every use and live in HTTP-only cookies, and Argon2id for passwords, as OWASP recommends."
+      }
+    ],
+    "hard": "Converting between formats without losing anything. OpenAPI and Postman describe the same API in different ways, and the contract model has to keep enough detail that exporting what you imported gives you back what you started with.",
+    "next": "Finishing the contract editor and the documentation portal, then the request runner."
+  },
+  "movie-booking-platform": {
+    "title": "Movie booking platform",
+    "summary": "Started as cinema seat booking and became the place I try hard problems: real-time chat, passkeys, 2FA and a Git-like code-sharing service.",
+    "role": "Personal project, built in many small steps.",
+    "period": "2025–2026",
+    "status": "Ongoing side project.",
+    "problem": "I wanted one codebase where I could practise the parts of web development that tutorials skip: payments, real-time features, strong sign-in and public APIs, all living together and sharing the same users.",
+    "built": [
+      "Seat booking for theatres and shows, with checkout, subscriptions and digital tickets.",
+      "Real-time chat with invites and join requests over Socket.io, which reconnects by itself in the background after a dropped connection.",
+      "Passkey sign-in (WebAuthn), authenticator-app codes (TOTP), and captcha and rate limits on the sensitive routes.",
+      "CodeShare V2: share a whole folder of files, edit it, record commits with line-by-line diffs, browse the history and download everything as a ZIP. Guests get in through signed links that expire."
+    ],
+    "how": "One Express API written in TypeScript, with MongoDB for data and BullMQ workers on Redis for anything slow. A public API with its own keys sits next to the app's routes.",
+    "diagramCaption": "The main parts of the platform.",
+    "decisions": [
+      {
+        "title": "Signed links instead of guest accounts",
+        "body": "Sharing code shouldn't need a sign-up. A link carries an expiry time and an HMAC signature over the resource and that time, so the server can check it without storing anything."
+      },
+      {
+        "title": "Keep diffs apart from commits",
+        "body": "The history list only needs the number of lines added and removed. The heavy diffs and file snapshots live in a separate collection, so browsing history stays fast."
+      },
+      {
+        "title": "Load big files in pieces",
+        "body": "Files over 30 KB load in 30,000-character chunks when you open them; small files arrive with the workspace. Opening a large project doesn't download everything at once."
+      },
+      {
+        "title": "Render only what's on screen",
+        "body": "Long lists use TanStack Virtual, so a long chat or a big file tree stays smooth."
+      }
+    ],
+    "hard": "Keeping it coherent. Features added months apart share users, permissions and rate limits, so each new one had to fit what was already there instead of being bolted on.",
+    "next": "Moving CodeShare into its own service, and renaming the repository to match what it has become."
+  },
+  "nutrify": {
+    "title": "Nutrify",
+    "summary": "A food tracking app: search foods, log meals and see your nutrition for the day.",
+    "role": "Personal project. Full stack.",
+    "period": "2024–2025",
+    "status": "Live on a free hosting plan, so the first load can take up to a minute.",
+    "problem": "I wanted a simple way to log what I eat without the clutter of the big fitness apps.",
+    "built": [
+      "Sign-up and personal profiles, food search with filters, meal logging and daily nutrition totals.",
+      "Redis in front of the food database and TanStack Query on the client, so repeated searches come back without waiting."
+    ],
+    "how": "A React client and an Express API on MongoDB, with Redis as a cache.",
+    "decisions": [
+      {
+        "title": "Cache the food list",
+        "body": "Food data rarely changes but is searched all the time, so it sits behind Redis, and the client keeps recent results with TanStack Query."
+      }
+    ]
+  }
+}

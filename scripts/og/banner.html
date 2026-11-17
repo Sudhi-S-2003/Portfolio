@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- 1600x400 banner for the GitHub profile README (shown at half size). ?theme=dark for the dark version. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'Newsreader';
+        src: url('newsreader.woff2') format('woff2-variations');
+        font-weight: 200 800;
+      }
+      @font-face {
+        font-family: 'General Sans';
+        src: url('../../src/design/fonts/GeneralSans-Variable.woff2') format('woff2-variations');
+        font-weight: 200 700;
+      }
+      :root {
+        --paper: #f7f5f0;
+        --ink: #1f1d1a;
+        --muted: #5c574f;
+        --line: #dedad1;
+        --accent: #3b5a4f;
+      }
+      :root.dark {
+        --paper: #171614;
+        --ink: #ece8e1;
+        --muted: #a8a197;
+        --line: #33302b;
+        --accent: #a3c0b3;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1600px;
+        height: 400px;
+        background: transparent;
+        overflow: hidden;
+      }
+      .card {
+        box-sizing: border-box;
+        width: 1600px;
+        height: 400px;
+        border-radius: 28px;
+        border: 2px solid var(--line);
+        background: var(--paper);
+        color: var(--ink);
+        padding: 76px 96px 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: 'General Sans', 'Segoe UI', sans-serif;
+      }
+      h1 {
+        margin: 0;
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 500;
+        font-size: 124px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .role {
+        margin: 18px 0 0;
+        font-size: 46px;
+        color: var(--muted);
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        border-top: 2px solid var(--line);
+        padding-top: 22px;
+        font-family: Consolas, ui-monospace, monospace;
+        font-size: 30px;
+        color: var(--muted);
+      }
+      .row .site {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div>
+        <h1>Sudhi S</h1>
+        <p class="role">Full-stack developer, mostly backend</p>
+      </div>
+      <div class="row">
+        <span>Thiruvananthapuram, Kerala</span>
+        <span class="site">sudhis.netlify.app</span>
+      </div>
+    </div>
+    <script>
+      if (new URLSearchParams(location.search).get('theme') === 'dark') document.documentElement.classList.add('dark');
+    </script>
+  </body>
+</html>
